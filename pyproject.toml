@@ -3,7 +3,7 @@
 # once published, and the Registry asks that it does not contain "ComfyUI".
 name = "craterview"
 description = "Enhance, denoise, restore and retouch images with CraterView.ai. Each node sends an image to the API and returns the result, with no graphics card or model files."
-version = "0.4.44"
+version = "0.4.45"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 # Floors, not pins, and the same list as requirements.txt, which is what a hand install and

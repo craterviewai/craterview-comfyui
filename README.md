@@ -4,6 +4,9 @@ Use [CraterView.ai](https://craterview.ai)'s photo tools as nodes in a ComfyUI w
 node takes an image and returns an image. The work runs on CraterView.ai's servers, so you need
 no graphics card and no model files.
 
+New to it? The [guide to the clients](https://craterview.ai/guides/clients#comfyui) walks
+through a first workflow, two tools in a row and batches. This README is the reference.
+
 The nodes are built from the [catalogue](https://api.craterview.ai/v1/models) when ComfyUI
 starts, so a new model or setting appears after a restart, with no update to the pack:
 
@@ -40,7 +43,8 @@ pip install -r craterview-comfyui/requirements.txt
 
 ## Add your API key
 
-Get a key from your [dashboard](https://craterview.ai/dashboard). Then do one of these:
+Get a key from your [dashboard](https://craterview.ai/dashboard). Making one costs nothing, and
+without credit or a subscription your jobs run free on the community queue. Then do one of these:
 
 - **Set a variable** where ComfyUI starts, then restart it:
 
