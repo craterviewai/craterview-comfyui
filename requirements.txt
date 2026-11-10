@@ -1,0 +1,3 @@
+craterview>=0.4.36
+numpy
+pillow
