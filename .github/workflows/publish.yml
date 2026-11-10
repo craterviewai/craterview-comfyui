@@ -1,0 +1,42 @@
+# Publish the ComfyUI nodes to the Comfy Registry. Installed into craterviewai/craterview-comfyui
+# by hand, once; this file is the canonical copy.
+#
+# **The Registry takes a publishing key and offers no short-lived identity**, so this is the one
+# publish workflow holding a long-lived secret. It is held in the `comfy-registry` environment,
+# where an approval gate can be hung if one is ever wanted, and it can publish this pack and
+# nothing else on the Registry.
+#
+# comfy-cli rather than the Registry's own action: the action installs an unpinned comfy-cli and
+# splices the key into a script, and this runs the same two commands with both fixed.
+#
+# Fires on `v*` in this repository, which only the platform's release job writes.
+name: publish
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    environment: comfy-registry
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      # Pinned exactly, like everything else this platform builds from.
+      - run: pip install "comfy-cli==1.25.0"
+
+      - name: Publish to the Comfy Registry
+        env:
+          REGISTRY_ACCESS_TOKEN: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          comfy --skip-prompt --no-enable-telemetry env
+          comfy --skip-prompt --no-enable-telemetry node publish --token "$REGISTRY_ACCESS_TOKEN"
