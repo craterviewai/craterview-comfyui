@@ -80,7 +80,7 @@ workflow saved in API format keeps working too, because every setting is optiona
 
 - **Each image in a batch is a job of its own.** A batch of 16 is 16 jobs, each priced as one.
 - **Without credit or a subscription, a job runs free** on the community queue: the same models,
-  with smaller size limits and longer waits at busy times.
+  with smaller size limits on most of those that return a picture and longer waits at busy times.
 - **Running again with nothing changed starts no job.** ComfyUI reuses the result. Changing
   anything before the node starts a new job, and so does restarting ComfyUI.
 - **Stop does not cancel a job.** It stops ComfyUI waiting. The job carries on and is charged if
